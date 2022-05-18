@@ -1,0 +1,22 @@
+.home-page{
+    display: flex;
+
+    article.search{
+        display: flex;
+        flex-direction:column;
+        // justify-content: center;
+        align-items: center;
+        flex:0.3
+    }
+    article.grid{
+        border: solid 3px blue;
+        display: flex;
+        flex: 0.7;
+        padding: 1em;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+}
