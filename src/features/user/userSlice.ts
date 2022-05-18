@@ -11,7 +11,8 @@ interface IUsers{
 export interface IUser{
     email: string
     password: string,
-    books?: string[]
+    books?: string[],
+    language?: string
 
 }
 const init:IUsers= {
@@ -44,12 +45,19 @@ const usersSlice = createSlice({
         logout: (state:any)=>{
             state.currentUser = null
             localStorage.removeItem('cuser')
+        },
+        update: (state:any, action: PayloadAction<IUser>)=>{
+            let users= JSON.parse(
+                localStorage.getItem('users')!)
+            let index = users.findIndex((user:IUser)=>user.email === action.payload.email)
+            state.users[index] = action.payload
+            localStorage.setItem('users', JSON.stringify(state.users))
         }
     },
 
 })
 
 export default usersSlice.reducer;
-export const {login, logout} = usersSlice.actions;
+export const {login, logout, update} = usersSlice.actions;
 export const selectUsers = (state: IRootUsers)=> state.users?.users
 export const selectCurrentUser = (state:IRootUsers) => state.users?.currentUser

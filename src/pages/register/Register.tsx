@@ -20,9 +20,10 @@ const Register = () => {
       email: email,
       password: password,
       books: [],
+      language: "en",
     };
     dispatch(login(user));
-    navigate("/home");
+    navigate("/home/en");
   };
   return (
     <Fragment>
@@ -53,7 +54,7 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
+            {/* <Form.Check type="checkbox" label="Check me out" /> */}
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

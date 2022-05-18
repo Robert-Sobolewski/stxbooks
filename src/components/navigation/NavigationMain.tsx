@@ -1,8 +1,12 @@
 import React, { Fragment } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { logout } from "../../features/user/userSlice";
 
 const NavigationMain = () => {
+  const dispatch = useDispatch();
+
   return (
     <Fragment>
       <section className="navigation-main">
@@ -17,9 +21,20 @@ const NavigationMain = () => {
                   Home
                 </NavLink>
                 <NavDropdown title="Language" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/home/en">English</NavDropdown.Item>
-                  <NavDropdown.Item href="/home/pl">Polish</NavDropdown.Item>
+                  <NavLink className="dropdown-item" to="/home/en">
+                    English
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/home/pl">
+                    Polish
+                  </NavLink>
                 </NavDropdown>
+                <NavLink
+                  className="nav-link"
+                  onClick={(e: any) => dispatch(logout())}
+                  to="/"
+                >
+                  Logout
+                </NavLink>
               </Nav>
             </Navbar.Collapse>
           </Container>
