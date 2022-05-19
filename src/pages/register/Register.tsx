@@ -12,7 +12,6 @@ const Register = () => {
   // onSubmitForm handle
   const onSubmitForm = (e: any) => {
     if (email === "" || password === "") {
-      alert("Email and password must be provided");
       return;
     }
     e.preventDefault();
@@ -35,12 +34,14 @@ const Register = () => {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
+              name="email"
+              data-testId="email"
               placeholder="Enter email"
               value={email}
               onChange={(e: any) => setEmail(e.target.value)}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+            <Form.Text style={{ color: "red" }} className="">
+              {email === "" ? "Email cannot be empty" : ""}
             </Form.Text>
           </Form.Group>
 
@@ -48,15 +49,20 @@ const Register = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              name="password"
+              data-testId="password"
               placeholder="Password"
               value={password}
               onChange={(e: any) => setPassword(e.target.value)}
             />
+            <Form.Text style={{ color: "red" }} className="">
+              {password === "" ? "Password cannot be empty" : ""}
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             {/* <Form.Check type="checkbox" label="Check me out" /> */}
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" data-testId="submitBtn" type="submit">
             Submit
           </Button>
         </Form>
