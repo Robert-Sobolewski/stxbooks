@@ -13,6 +13,7 @@ export interface IBooks {
   volume: IBook[];
   library: string[];
   totalItems: number;
+  isLoading: boolean;
 }
 
 export interface IBook {
@@ -62,7 +63,8 @@ export interface IBook {
 const init: IBooks = {
   volume: [],
   library: [],
-  totalItems:-1
+  totalItems:-1,
+  isLoading:false
 };
 export const fetchVolume: any = createAsyncThunk(
   "books/fetchVolume",
@@ -95,17 +97,28 @@ const booksSlice = createSlice({
     builder.addCase(
       fetchVolume.fulfilled,
       (state: IBooks, action: PayloadAction<IVolume>) => {
-          state.totalItems = action.payload.totalItems
+// state.isLoading = false
+        
+        console.log('ap=',action.payload)
+        if(state.totalItems === -1){
+          state.volume= state.volume.concat(action.payload.items) ;
+          state.totalItems = action.payload.totalItems!
+        }
+          
+          
           let books = action.payload.items;
           let currentIDs = state.volume.map((b:IBook)=> b.id);
           for(let newBook of books){
+            // state.volume.push(newBook);
               if(!currentIDs.includes(newBook.id)){
                   state.volume.push(newBook);
               }
           }
-        //   state.volume=state.volume.concat(books)
       }
-    );
+    )
+    .addCase(fetchVolume.pending, (state:IBooks)=>{
+      // state.isLoading = true;
+  })
   },
 });
 
@@ -114,3 +127,4 @@ export const {clearVolume} = booksSlice.actions;
 export const selectVolume = (state: IRootBooks) => state.books.volume;
 export const selectLibrary = (state: IRootBooks) => state.books.library;
 export const selectTotalItems = (state: IRootBooks) => state.books.totalItems;
+export const selectIsLoading = (state: IRootBooks) => state.books.isLoading;

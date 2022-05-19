@@ -51,7 +51,9 @@ const usersSlice = createSlice({
                 localStorage.getItem('users')!)
             let index = users.findIndex((user:IUser)=>user.email === action.payload.email)
             state.users[index] = action.payload
+            state.currentUser = action.payload
             localStorage.setItem('users', JSON.stringify(state.users))
+            localStorage.setItem('cuser', JSON.stringify(action.payload))
         }
     },
 
