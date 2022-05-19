@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/stxbooks/static/css/main.1b1a87ec.css",
+    "main.js": "/stxbooks/static/js/main.0b125937.js",
+    "static/js/787.ceb31e20.chunk.js": "/stxbooks/static/js/787.ceb31e20.chunk.js",
+    "index.html": "/stxbooks/index.html",
+    "main.1b1a87ec.css.map": "/stxbooks/static/css/main.1b1a87ec.css.map",
+    "main.0b125937.js.map": "/stxbooks/static/js/main.0b125937.js.map",
+    "787.ceb31e20.chunk.js.map": "/stxbooks/static/js/787.ceb31e20.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b1a87ec.css",
+    "static/js/main.0b125937.js"
+  ]
+}
