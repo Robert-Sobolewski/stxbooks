@@ -1,13 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { Provider } from "react-redux";
-import { MemoryRouter, Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { store } from "../../app/store";
 import Register from "./Register";
 import { createMemoryHistory } from "history";
 
 describe("test Register page", () => {
   const history = createMemoryHistory();
+  const mockSubmit = jest.fn(); //jest.fn((e) => e.preventDefault());
   test("render page", () => {
     render(
       <Provider store={store}>
@@ -19,8 +20,8 @@ describe("test Register page", () => {
     expect(screen.getByRole("heading")).toHaveTextContent(
       "Register/Login page"
     );
-    expect(screen.getByText(/Email address/i)).toBeInTheDocument();
-    expect(screen.getByText(/Password/i)).toBeInTheDocument();
+    expect(screen.getByText(/Email address:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Password:/i)).toBeInTheDocument();
     expect(screen.getByTestId("email")).toBeInTheDocument();
 
     expect(screen.getByTestId("password")).toBeInTheDocument();
@@ -65,8 +66,11 @@ describe("test Register page", () => {
     let password = screen.getByLabelText(/Password/i);
     fireEvent.change(password, { target: { value: "ccc" } });
     let submit = screen.getByText("Submit");
+    const form = screen.getByTestId("form");
 
-    fireEvent.click(submit);
+    fireEvent.submit(form);
+    expect(mockSubmit.mock.calls).toEqual([]);
+    // fireEvent.click(submit);
     // let tmp = screen.getByRole("heading");
     // console.log("tmp=", tmp);
     // expect(tmp).toHaveTextContent("home page");

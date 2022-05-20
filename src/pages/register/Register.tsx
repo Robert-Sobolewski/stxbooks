@@ -29,13 +29,13 @@ const Register = () => {
       <section className="register">
         <h1>Register/Login page</h1>
 
-        <Form onSubmit={(e: any) => onSubmitForm(e)}>
+        <Form data-testid="form" onSubmit={(e: any) => onSubmitForm(e)}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Email address:</Form.Label>
             <Form.Control
               type="email"
               name="email"
-              data-testId="email"
+              data-testid="email"
               placeholder="Enter email"
               value={email}
               onChange={(e: any) => setEmail(e.target.value)}
@@ -46,11 +46,11 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
               name="password"
-              data-testId="password"
+              data-testid="password"
               placeholder="Password"
               value={password}
               onChange={(e: any) => setPassword(e.target.value)}
@@ -62,7 +62,7 @@ const Register = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             {/* <Form.Check type="checkbox" label="Check me out" /> */}
           </Form.Group>
-          <Button variant="primary" data-testId="submitBtn" type="submit">
+          <Button variant="primary" data-testid="submitBtn" type="submit">
             Submit
           </Button>
         </Form>

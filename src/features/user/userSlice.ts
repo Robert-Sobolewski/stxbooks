@@ -4,7 +4,7 @@ interface IRootUsers{
     users: IUsers|null
 }
 
-interface IUsers{ 
+export interface IUsers{ 
     users: IUser[]
     currentUser: IUser|null
 }

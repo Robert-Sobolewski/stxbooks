@@ -107,12 +107,15 @@ const HomePage = () => {
       <section className="home-page">
         <article className="search">
           <div className="sticky">
-            <h1>home page</h1>
+            <h1>Home page</h1>
             <div>
               <p>lng = {lng ? lng : null}</p>
             </div>
 
-            <form action="" onSubmit={(e: any) => onFormSubmit(e)}>
+            <form
+              data-testid="searchForm"
+              onSubmit={(e: any) => onFormSubmit(e)}
+            >
               <input
                 type="text"
                 placeholder="Search book"
@@ -120,6 +123,7 @@ const HomePage = () => {
                 onChange={(e: any) => setSearchValue(e.target.value)}
                 name="search"
                 id="search"
+                data-testid="search"
               />
               <Button
                 style={{ marginLeft: "10px" }}
@@ -139,7 +143,7 @@ const HomePage = () => {
             loadMore={getMoreItems}
             pageStart={0}
             hasMore={isMore}
-            loader={loader}
+            loader={currentIndex === 0 ? undefined : loader}
           >
             {volume.map((book: IBook, index: number) => (
               <Card key={index} style={{ width: "18rem" }}>

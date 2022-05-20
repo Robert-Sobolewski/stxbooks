@@ -17,9 +17,9 @@ const NavigationMain = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 {/* <Nav.Link href="/home">Home</Nav.Link> */}
-                <NavLink className="nav-link" to="/home">
+                {/* <NavLink className="nav-link" to="/home">
                   Home
-                </NavLink>
+                </NavLink> */}
                 <NavDropdown title="Language" id="basic-nav-dropdown">
                   <NavLink className="dropdown-item" to="/home/en">
                     English
